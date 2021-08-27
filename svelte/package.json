@@ -1,0 +1,25 @@
+{
+  "name": "electron-svelte-typescript-esbuild-template",
+  "version": "1.0.0",
+  "description": "A starter kit to build cross-platform desktop apps with Electron, Svelte, TypeScript and Esbuild",
+  "author": "@JeffProd",
+  "license": "MIT",
+  "scripts": {
+    "dev": "concurrently 'node esbuild.js dev' 'cd ../electron/ && yarn run dev'",
+    "check": "svelte-check --tsconfig ./tsconfig.json",
+    "buildlinux": "node esbuild.js prod && cd ../electron/ && yarn run buildlinux",
+    "buildwindows": "node esbuild.js prod && cd ../electron/ && yarn run buildwindows"
+  },
+  "devDependencies": {
+    "@tsconfig/svelte": "^2.0.1",
+    "concurrently": "^6.2.1",
+    "electron": "^13.2.2",
+    "esbuild": "^0.12.23",
+    "esbuild-svelte": "^0.5.4",
+    "svelte": "^3.0.0",
+    "svelte-check": "^2.2.5",
+    "svelte-preprocess": "^4.8.0",
+    "tslib": "^2.0.0",
+    "typescript": "^4.4.2"
+  }
+}
