@@ -21,6 +21,7 @@ yarn install
 cd electron-typescript-svelte-esbuild-template/svelte
 yarn run dev
 yarn run check
+yarn run lint
 ```
 
 The Hot Module Replacement (HMR) feature will reload the browser while you are coding (thanks to [electron-reloader](https://github.com/sindresorhus/electron-reloader))

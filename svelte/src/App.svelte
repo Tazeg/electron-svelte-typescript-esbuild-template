@@ -1,17 +1,17 @@
 <script lang="ts">
-  import { onMount } from 'svelte'
-  const { ipcRenderer } = require('electron')
+import { onMount } from 'svelte'
+const { ipcRenderer } = require('electron')
 
-	export let name: string;
+export let name: string
 
-  onMount(() => {
-    // communication test between the electron renderer and main process
-		ipcRenderer.on('asynchronous-reply', (_event: any, arg: string) => {
-      console.log(arg) // prints "pong"
-    })
-    ipcRenderer.send('asynchronous-message', 'ping')
-    console.log('ping sent')
-	})
+onMount(() => {
+  // communication test between the electron renderer and main process
+  ipcRenderer.on('asynchronous-reply', (_event: any, arg: string) => {
+    console.log(arg) // prints "pong"
+  })
+  ipcRenderer.send('asynchronous-message', 'ping')
+  console.log('ping sent')
+})
 </script>
 
 <main>

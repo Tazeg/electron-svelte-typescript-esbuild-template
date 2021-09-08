@@ -13,7 +13,7 @@ if (process.argv.length < 3) {
   showUsage()
 }
 
-if (![ 'dev', 'prod' ].includes(process.argv[2])) {
+if (!['dev', 'prod'].includes(process.argv[2])) {
   showUsage()
 }
 
@@ -24,7 +24,7 @@ const production = (process.argv[2] === 'prod')
 let watch = false
 if (!production) {
   watch = {
-    onRebuild(error) {
+    onRebuild (error) {
       if (error) console.error('esbuild: Watch build failed:', error.getMessage())
       else console.log('esbuild: Watch build succeeded')
     }
