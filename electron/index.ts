@@ -2,7 +2,8 @@
 // main Electron file
 //-------------------------
 
-const { app, BrowserWindow, ipcMain } = require("electron")
+import { app, BrowserWindow, ipcMain } from 'electron'
+import { IpcMainEvent } from 'electron/main'
 
 function createWindow () {
   const mainWindow = new BrowserWindow({
@@ -15,8 +16,8 @@ function createWindow () {
   })
 
   mainWindow.loadFile('index.html')
-  
-  if (process.env.ELECTRON_MODE === 'dev') {    
+
+  if (process.env.ELECTRON_MODE === 'dev') {
     mainWindow.webContents.openDevTools()
   }
 } // createWindow
@@ -42,7 +43,7 @@ app.on('window-all-closed', function () {
 })
 
 // sample test
-ipcMain.on('asynchronous-message', (event, arg) => {
+ipcMain.on('asynchronous-message', (event: IpcMainEvent, arg: string) => {
   console.log(arg) // prints "ping"
   event.reply('asynchronous-reply', 'pong')
 })
@@ -51,6 +52,8 @@ ipcMain.on('asynchronous-message', (event, arg) => {
 if (process.env.ELECTRON_MODE === 'dev') {
   console.log('electron-reloader active')
   try {
-    require('electron-reloader')(module);
-  } catch {}
+    require('electron-reloader')(module)
+  } catch (error) {
+    console.error(error)
+  }
 }

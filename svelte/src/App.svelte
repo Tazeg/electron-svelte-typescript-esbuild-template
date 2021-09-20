@@ -3,11 +3,13 @@ import { onMount } from 'svelte'
 const { ipcRenderer } = require('electron')
 
 export let name: string
+let appAnswer = ''
 
 onMount(() => {
   // communication test between the electron renderer and main process
-  ipcRenderer.on('asynchronous-reply', (_event: any, arg: string) => {
+  ipcRenderer.on('asynchronous-reply', (event: typeof ipcRenderer, arg: string) => {
     console.log(arg) // prints "pong"
+    appAnswer = arg
   })
   ipcRenderer.send('asynchronous-message', 'ping')
   console.log('ping sent')
@@ -17,6 +19,7 @@ onMount(() => {
 <main>
 	<h1>Hello {name}!</h1>
 	<p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
+	<p>Main Electron app said: {appAnswer}</p>
 </main>
 
 <style>

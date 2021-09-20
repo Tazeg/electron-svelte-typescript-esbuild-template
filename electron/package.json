@@ -11,6 +11,22 @@
       "output": "../dist",
       "buildResources": "./buildressources"
     },
+    "files": [
+      "**/*",
+      "!.eslintrc.js",
+      "!tsconfig.json",
+      "!**/node_modules/*/{CHANGELOG.md,README.md,README,readme.md,readme}",
+      "!**/node_modules/*/{test,__tests__,tests,powered-test,example,examples}",
+      "!**/node_modules/*.d.ts",
+      "!**/node_modules/.bin",
+      "!**/*.{iml,o,hprof,orig,pyc,pyo,rbc,swp,csproj,sln,xproj,ts}",
+      "!.editorconfig",
+      "!**/._*",
+      "!**/{.DS_Store,.git,.hg,.svn,CVS,RCS,SCCS,.gitignore,.gitattributes}",
+      "!**/{__pycache__,thumbs.db,.flowconfig,.idea,.vs,.nyc_output}",
+      "!**/{appveyor.yml,.travis.yml,circle.yml}",
+      "!**/{npm-debug.log,yarn.lock,.yarn-integrity,.yarn-metadata.json}"
+    ],
     "linux": {
       "asar": true,
       "category": "Network",
@@ -31,13 +47,18 @@
     }
   },
   "scripts": {
-    "dev": "ELECTRON_MODE=dev electron .",
-    "buildlinux": "electron-builder -l --x64",
-    "buildwindows": "electron-builder -w --x64"
+    "dev": "tsc && ELECTRON_MODE=dev electron .",
+    "lint": "eslint . --ext .ts --fix",
+    "buildlinux": "tsc && electron-builder -l --x64",
+    "buildwindows": "tsc && electron-builder -w --x64"
   },
   "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^4.31.2",
+    "@typescript-eslint/parser": "^4.31.2",
     "electron": "^13.1.6",
     "electron-builder": "^22.11.7",
-    "electron-reloader": "^1.2.1"
+    "electron-reloader": "^1.2.1",
+    "eslint": "^7.32.0",
+    "typescript": "^4.4.3"
   }
 }

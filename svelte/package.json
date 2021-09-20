@@ -6,7 +6,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "concurrently 'node esbuild.js dev' 'cd ../electron/ && yarn run dev'",
-    "lint": "eslint ./src --ext .js,.ts,.svelte --fix",
+    "lint": "eslint ./src --ext .js,.ts,.svelte --fix && cd ../electron && yarn run lint",
     "check": "svelte-check --tsconfig ./tsconfig.json",
     "buildlinux": "node esbuild.js prod && cd ../electron/ && yarn run buildlinux",
     "buildwindows": "node esbuild.js prod && cd ../electron/ && yarn run buildwindows"
