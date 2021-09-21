@@ -52,6 +52,7 @@ ipcMain.on('asynchronous-message', (event: IpcMainEvent, arg: string) => {
 if (process.env.ELECTRON_MODE === 'dev') {
   console.log('electron-reloader active')
   try {
+    // eslint-disable-next-line
     require('electron-reloader')(module)
   } catch (error) {
     console.error(error)
