@@ -7,7 +7,7 @@ let appAnswer = ''
 
 onMount(() => {
   // communication test between the electron renderer and main process
-  ipcRenderer.on('asynchronous-reply', (event: typeof ipcRenderer, arg: string) => {
+  ipcRenderer.on('asynchronous-reply', (_event: typeof ipcRenderer, arg: string) => {
     console.log(arg) // prints "pong"
     appAnswer = arg
   })
