@@ -49,7 +49,7 @@
   },
   "scripts": {
     "dev": "node esbuild dev && ELECTRON_MODE=dev electron .",
-    "lint": "eslint . --ext .ts --fix",
+    "lint": "tsc && eslint . --ext .ts --fix",
     "buildlinux": "node esbuild prod && electron-builder -l --x64",
     "buildwindows": "node esbuild prod && electron-builder -w --x64"
   },
