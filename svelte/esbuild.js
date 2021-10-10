@@ -5,6 +5,7 @@ const sveltePlugin = require('esbuild-svelte') // esbuild plugin svelte
 function showUsage () {
   console.log('USAGE')
   console.log('node esbuild.js dev')
+  console.log('node esbuild.js watch')
   console.log('node esbuild.js prod')
   process.exit(0)
 }
@@ -13,7 +14,7 @@ if (process.argv.length < 3) {
   showUsage()
 }
 
-if (!['dev', 'prod'].includes(process.argv[2])) {
+if (!['dev', 'watch', 'prod'].includes(process.argv[2])) {
   showUsage()
 }
 
@@ -22,7 +23,7 @@ const production = (process.argv[2] === 'prod')
 
 // esbuild watch in dev mode to rebuild out files
 let watch = false
-if (!production) {
+if (process.argv[2] === 'watch') {
   watch = {
     onRebuild (error) {
       if (error) console.error('esbuild: Watch build failed:', error.getMessage())
@@ -42,6 +43,7 @@ const options = {
   minify: production,
   sourcemap: false,
   outfile: '../electron/public/bundle.js', // and bundle.css
+  pure: production ? ['console.log', 'console.time', 'console.timeEnd'] : [], // remove console.*
   plugins: [
     sveltePlugin({ preprocess: sveltePreprocess() })
   ]

@@ -1,5 +1,6 @@
 <script lang="ts">
 import { onMount } from 'svelte'
+import type { IpcRendererEvent } from 'electron'
 const { ipcRenderer } = require('electron')
 
 export let name: string
@@ -7,7 +8,7 @@ let appAnswer = ''
 
 onMount(() => {
   // communication test between the electron renderer and main process
-  ipcRenderer.on('asynchronous-reply', (_event: typeof ipcRenderer, arg: string) => {
+  ipcRenderer.on('asynchronous-reply', (_event: IpcRendererEvent, arg: string) => {
     console.log(arg) // prints "pong"
     appAnswer = arg
   })

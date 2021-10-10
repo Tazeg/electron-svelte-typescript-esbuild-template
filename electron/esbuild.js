@@ -30,7 +30,7 @@ const options = {
   platform: 'node',
   target: 'es6',
   minify: production,
-  pure: [ 'console.log' ], // remove mes console.log avec esbuild ssi minifySyntax (ou minify)
+  pure: production ? [ 'console.log', 'console.time', 'console.timeEnd' ] : [], // remove console.*
   sourcemap: false,
   legalComments: 'none'
 }
